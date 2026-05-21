@@ -1,0 +1,6 @@
+{
+  "name": "Hanter Solution Landing",
+  "description": "A replica of the Hanter Solution web page featuring service listings, ROI calculators, and contact forms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
