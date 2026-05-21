@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageSquare, Workflow, BarChart3, Users, Network, ShieldCheck } from "lucide-react";
+import { RobotModel } from "../3d/RobotModel";
 
 export function ServicesSection() {
   const services = [
@@ -39,14 +40,21 @@ export function ServicesSection() {
     <section className="py-24 bg-white relative">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
-            Todo lo que necesitas para <span className="text-blue-600">automatizar</span>
-          </h2>
-          <p className="text-lg text-slate-600">
-            Diseñamos soluciones tecnológicas a la medida de tu empresa. 
-            Sin jerga técnica complacada, solo resultados medibles.
-          </p>
+        <div className="relative flex items-center justify-center mb-20 min-h-[300px] lg:scale-100">
+          <div className="text-center max-w-3xl mx-auto px-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#000000] font-[Georgia] mb-6">
+              Todo lo que necesitas para <span className="text-[#000000]">automatizar</span>
+            </h2>
+            <p className="text-lg text-[#000000] font-[system-ui]">
+              Diseñamos soluciones tecnológicas a la medida de tu empresa. 
+              Sin jerga técnica complacada, solo resultados medibles.
+            </p>
+          </div>
+          
+          {/* 3D Robot Model */}
+          <div className="absolute right-0 lg:-right-40 top-[50%] lg:top-[35%] -translate-y-1/2 w-[300px] lg:w-[500px] h-[300px] lg:h-[600px] z-20 pointer-events-none opacity-30 lg:opacity-100">
+            <RobotModel />
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

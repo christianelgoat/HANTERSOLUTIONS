@@ -9,12 +9,7 @@ export function Footer() {
           
           <div className="md:col-span-1 space-y-4">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
-                <Bot className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                HANTER
-              </span>
+              <img src="/Logo.png" alt="Hanter Logo" className="h-10 w-auto object-contain transition-opacity hover:opacity-90" />
             </Link>
             <p className="text-sm text-slate-400 max-w-xs">
               Automatización inteligente para PyMEs. Recupera tu tiempo, 
