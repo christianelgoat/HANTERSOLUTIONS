@@ -32,7 +32,25 @@ export function Navbar() {
     { name: "Inicio", path: "/" },
     { name: "Servicios", path: "/servicios" },
     { name: "Empresa", path: "/empresa" },
+    { name: "Carreras", path: "/#trabaja-con-nosotros" },
   ];
+
+  // Helper to handle smooth scrolling for hash links
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith("/#")) {
+      const targetId = path.replace("/#", "");
+      if (location.pathname === "/") {
+        e.preventDefault();
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          setIsOpen(false);
+        }
+      }
+    } else {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <motion.header 
@@ -61,6 +79,7 @@ export function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
+                onClick={(e) => handleLinkClick(e, link.path)}
                 className={cn(
                   "text-lg font-medium transition-colors",
                   isScrolled ? "hover:text-blue-600" : "hover:text-white/80",
@@ -103,7 +122,7 @@ export function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleLinkClick(e, link.path)}
                   className={cn(
                     "text-lg font-medium",
                     location.pathname === link.path

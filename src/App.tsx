@@ -10,6 +10,7 @@ import { Services } from "./pages/Services";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Legal } from "./pages/Legal";
+import { Careers } from "./pages/Careers";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/empresa" element={<About />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="/carreras" element={<Careers />} />
         </Routes>
       </Layout>
     </BrowserRouter>

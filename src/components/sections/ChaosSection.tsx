@@ -4,17 +4,17 @@ import { Banknote, Network, Gauge } from "lucide-react";
 export function ChaosSection() {
   const painPoints = [
     {
-      icon: <Banknote className="h-6 w-6 text-slate-700" />,
+      icon: <Banknote className="h-12 w-12 text-[#110C29]" />,
       title: "Costo de la ineficiencia",
       description: "Tareas manuales y repetitivas drenan el tiempo de tu equipo y tu presupuesto sin que te des cuenta. Cada hora perdida en procesos obsoletos es inversión que no retorna.",
     },
     {
-      icon: <Network className="h-6 w-6 text-slate-700" />,
+      icon: <Network className="h-12 w-12 text-[#110C29]" />,
       title: "Operación sin procesos",
       description: "Sin estándares, cada error humano genera clientes insatisfechos y cuellos de botella constantes. La falta de estructura impide escalar con seguridad y precisión.",
     },
     {
-      icon: <Gauge className="h-6 w-6 text-slate-700" />,
+      icon: <Gauge className="h-12 w-12 text-[#110C29]" />,
       title: "La competencia no espera",
       description: "Mientras dudas sobre implementar IA, el mercado ya está automatizando y ofreciendo soporte 24/7. La brecha tecnológica se expande cada segundo que postergas tu evolución.",
     }
@@ -40,9 +40,9 @@ export function ChaosSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-transparent p-8 rounded-sm border border-slate-200 transition-shadow hover:shadow-md"
+              className="bg-transparent text-center"
             >
-              <div className="mb-6 inline-flex p-3 rounded-sm bg-slate-100 border border-slate-200">
+              <div className="mb-6 inline-flex justify-center items-center">
                 {point.icon}
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
