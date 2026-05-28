@@ -1,8 +1,28 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "../components/ui/button";
-import { CheckCircle2, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "../lib/utils";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
 
 export function Contact() {
   const { register, handleSubmit, reset } = useForm();
@@ -15,134 +35,181 @@ export function Contact() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-[80vh] bg-slate-50 py-20">
-      <div className="container mx-auto max-w-6xl px-4">
-        
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">¿Tienes un proyecto? Hablemos.</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Déjanos tus datos y un especialista se pondrá en contacto contigo en menos de 24 horas.
-          </p>
-        </div>
+    <div className="flex flex-col w-full min-h-screen bg-white text-black pt-32 pb-24 md:pt-40 md:pb-32 font-sans selection:bg-black selection:text-white">
+      <div className="container mx-auto max-w-7xl px-6 md:px-12">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start"
+        >
+          {/* Left Column - Copy & Info */}
+          <div className="flex flex-col gap-12 lg:sticky lg:top-40">
+            <motion.div
+              variants={itemVariants}
+              className="space-y-6 lg:max-w-xl"
+            >
+              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-black leading-[1.05]">
+                ¿Tienes un proyecto?
+                <br />
+                <span className="text-black/40">Hablemos.</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-light text-black/70 leading-relaxed">
+                Descubre cómo nuestras soluciones de inteligencia artificial
+                pueden transformar las operaciones de tu empresa.
+              </p>
+            </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12 bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100">
-          
-          <div className="lg:col-span-1 border-r border-slate-100 bg-slate-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20 -m-32"></div>
-            
-            <div className="relative z-10 space-y-10 mt-8">
-              <h3 className="text-2xl font-bold">Información de Contacto</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <h4 className="font-medium text-slate-300 text-sm mb-1">Email</h4>
-                    <p>contacto@hantersolution.com</p>
-                  </div>
+            <motion.div
+              variants={itemVariants}
+              className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-black/10"
+            >
+              <div className="space-y-2 group">
+                <div className="flex items-center gap-3 text-black/40 mb-4 transition-colors group-hover:text-black">
+                  <Mail className="w-5 h-5" />
+                  <span className="text-xs font-bold tracking-widest uppercase">
+                    Email
+                  </span>
                 </div>
-                
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <h4 className="font-medium text-slate-300 text-sm mb-1">Teléfono</h4>
-                    <p>+1 (234) 567-890</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <h4 className="font-medium text-slate-300 text-sm mb-1">Oficina</h4>
-                    <p>San Francisco, CA<br/>Operando globalmente</p>
-                  </div>
-                </div>
+                <p className="text-lg font-medium text-black">
+                  contacto@hantersolution.com
+                </p>
               </div>
-            </div>
+
+              <div className="space-y-2 group">
+                <div className="flex items-center gap-3 text-black/40 mb-4 transition-colors group-hover:text-black">
+                  <Phone className="w-5 h-5" />
+                  <span className="text-xs font-bold tracking-widest uppercase">
+                    Teléfono
+                  </span>
+                </div>
+                <p className="text-lg font-medium text-black">
+                  +51 987 654 321
+                </p>
+              </div>
+
+              <div className="space-y-2 group sm:col-span-2">
+                <div className="flex items-center gap-3 text-black/40 mb-4 transition-colors group-hover:text-black">
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-xs font-bold tracking-widest uppercase">
+                    Oficina
+                  </span>
+                </div>
+                <p className="text-lg font-medium text-black">
+                  Lima, Perú — Operando globalmente
+                </p>
+              </div>
+            </motion.div>
           </div>
 
-          <div className="lg:col-span-2 p-10">
+          {/* Right Column - Form */}
+          <motion.div variants={itemVariants} className="relative">
             {isSubmitted ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20"
+                className="h-full min-h-[500px] flex flex-col items-center justify-center text-center p-12 bg-[#F8F9FA]"
               >
-                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mb-8">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">¡Mensaje Recibido!</h3>
-                <p className="text-slate-600 max-w-md">
-                  Gracias por tu interés. Hemos recibido tus datos de contacto y un especialista te contactará muy pronto.
+                <h3 className="text-3xl font-bold tracking-tight text-black mb-4">
+                  Mensaje Recibido
+                </h3>
+                <p className="text-lg text-black/60 max-w-md font-light mb-10">
+                  Gracias por tu interés. Un especialista se pondrá en contacto
+                  contigo a la brevedad.
                 </p>
-                <Button 
+                <button
                   onClick={() => setIsSubmitted(false)}
-                  variant="outline" 
-                  className="mt-8"
+                  className="group relative inline-flex items-center justify-between gap-6 overflow-hidden border border-black bg-white px-6 py-4 transition-all duration-300 hover:bg-black"
                 >
-                  Enviar otro mensaje
-                </Button>
+                  <span className="relative z-10 text-[11px] font-bold tracking-[0.2em] text-black uppercase group-hover:text-white transition-colors duration-300">
+                    Enviar Otro Mensaje
+                  </span>
+                </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Nombre Completo</label>
-                    <input 
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-8"
+              >
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-3 relative group">
+                    <label className="text-[11px] font-bold tracking-widest uppercase text-black/50 transition-colors group-focus-within:text-black">
+                      Nombre Completo
+                    </label>
+                    <input
                       {...register("name", { required: true })}
                       placeholder="Ej. Juan Pérez"
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 text-lg font-medium text-black focus:outline-none focus:border-black transition-colors rounded-none placeholder:text-black/20"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Empresa</label>
-                    <input 
+                  <div className="space-y-3 relative group">
+                    <label className="text-[11px] font-bold tracking-widest uppercase text-black/50 transition-colors group-focus-within:text-black">
+                      Empresa
+                    </label>
+                    <input
                       {...register("company")}
-                      placeholder="Ej. Mi PyME S.A."
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      placeholder="Ej. Hanter Solutions"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 text-lg font-medium text-black focus:outline-none focus:border-black transition-colors rounded-none placeholder:text-black/20"
                     />
                   </div>
                 </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Email de Trabajo</label>
-                    <input 
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-3 relative group">
+                    <label className="text-[11px] font-bold tracking-widest uppercase text-black/50 transition-colors group-focus-within:text-black">
+                      Email de Trabajo
+                    </label>
+                    <input
                       type="email"
                       {...register("email", { required: true })}
                       placeholder="juan@empresa.com"
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 text-lg font-medium text-black focus:outline-none focus:border-black transition-colors rounded-none placeholder:text-black/20"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Teléfono</label>
-                    <input 
+                  <div className="space-y-3 relative group">
+                    <label className="text-[11px] font-bold tracking-widest uppercase text-black/50 transition-colors group-focus-within:text-black">
+                      Teléfono
+                    </label>
+                    <input
                       type="tel"
                       {...register("phone")}
-                      placeholder="+1 234 567 890"
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      placeholder="+51 987 654 321"
+                      className="w-full bg-transparent border-b border-black/20 pb-3 text-lg font-medium text-black focus:outline-none focus:border-black transition-colors rounded-none placeholder:text-black/20"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2 flex-grow">
-                  <label className="text-sm font-medium text-slate-700">¿En qué podemos ayudarte?</label>
-                  <textarea 
+                <div className="space-y-3 relative group mt-4">
+                  <label className="text-[11px] font-bold tracking-widest uppercase text-black/50 transition-colors group-focus-within:text-black">
+                    ¿En qué podemos ayudarte?
+                  </label>
+                  <textarea
                     {...register("message", { required: true })}
-                    rows={5}
-                    placeholder="Cuéntanos brevemente sobre los procesos que te gustaría automatizar..."
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none"
+                    rows={4}
+                    placeholder="Cuéntanos sobre tu proyecto..."
+                    className="w-full bg-transparent border-b border-black/20 pb-3 text-lg font-medium text-black focus:outline-none focus:border-black transition-colors resize-none rounded-none placeholder:text-black/20"
                   ></textarea>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full md:w-auto mt-auto py-6 text-lg rounded-xl">
-                  Enviar Mensaje
-                </Button>
+                <div className="pt-8">
+                  <button
+                    type="submit"
+                    className="group relative inline-flex w-full md:w-auto items-center justify-between gap-6 overflow-hidden bg-black px-8 py-5 transition-all duration-300"
+                  >
+                    <div className="absolute inset-0 bg-white/10 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+                    <span className="relative z-10 text-[11px] font-bold tracking-[0.2em] text-white uppercase transition-colors duration-300">
+                      Agendar Consulta
+                    </span>
+                    <ArrowUpRight className="relative z-10 w-5 h-5 text-white/50 group-hover:text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </button>
+                </div>
               </form>
             )}
-          </div>
-
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
