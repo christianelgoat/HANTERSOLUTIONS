@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { Plus, X } from "lucide-react";
 
 export function FAQSection() {
   const faqs = [
@@ -24,24 +23,25 @@ export function FAQSection() {
   ];
 
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-            Preguntas Frecuentes
-          </h2>
-          <p className="text-slate-600">
-            Aclaramos tus dudas clave antes de empezar.
-          </p>
-        </div>
+    <section className="py-24 bg-[#0B0D17] font-sans text-white">
+      <div className="container mx-auto max-w-[1400px] px-6 md:px-12 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+          
+          <div className="w-full lg:w-[40%] shrink-0">
+            <h2 className="text-[32px] md:text-[40px] font-medium tracking-tight text-white leading-tight">
+              Preguntas Frecuentes
+            </h2>
+          </div>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <FAQItem key={index} faq={faq} />
-          ))}
-        </div>
+          <div className="w-full lg:w-[60%]">
+            <div className="border-t border-white/10 mt-2 lg:mt-0">
+              {faqs.map((faq, index) => (
+                <FAQItem key={index} faq={faq} />
+              ))}
+            </div>
+          </div>
 
+        </div>
       </div>
     </section>
   );
@@ -51,28 +51,29 @@ const FAQItem: React.FC<{ faq: { q: string, a: string } }> = ({ faq }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+    <div className="border-b border-white/10">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-6 text-left"
+        className="flex w-full items-center justify-between py-6 text-left group gap-4 bg-[#0B0D17] hover:bg-transparent"
+        aria-expanded={isOpen}
       >
-        <span className="text-lg font-semibold text-slate-900">{faq.q}</span>
-        <ChevronDown 
-          className={cn(
-            "h-5 w-5 text-slate-500 transition-transform duration-300", 
-            isOpen && "rotate-180"
-          )} 
-        />
+        <span className="text-[17px] md:text-[18px] font-medium text-white group-hover:text-gray-200 transition-colors">
+          {faq.q}
+        </span>
+        <div className="shrink-0 text-white transition-transform duration-300">
+          {isOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Plus className="h-5 w-5" strokeWidth={1.5} />}
+        </div>
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="p-6 pt-0 text-slate-600 leading-relaxed">
+            <div className="pb-8 text-[15px] md:text-[16px] text-[#A0A3AE] leading-relaxed pr-8">
               {faq.a}
             </div>
           </motion.div>

@@ -1,86 +1,196 @@
 import { motion } from "framer-motion";
-import { MessageSquare, Workflow, BarChart3, Users, Network, ShieldCheck } from "lucide-react";
-import { RobotModel } from "../3d/RobotModel";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function ServicesSection() {
+  const categories = [
+    "Chatbots", 
+    "Automatización RPA", 
+    "Analítica Avanzada", 
+    "APIs & CRM", 
+    "Auditorías Digitales"
+  ];
+
   const services = [
     {
-      title: "Chatbots con Inteligencia Artificial",
-      description: "Atención al cliente 24/7. Respuestas inmediatas, calificación de leads automática y soporte multilingüe sin intervención humana.",
-      icon: <MessageSquare className="w-6 h-6 text-blue-600" />
+      id: 1,
+      title: "Chatbots IA",
+      category: "Atención 24/7 · Soporte",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+      aspectRatio: "aspect-[4/3]",
+      colSpan: "col-span-1"
     },
     {
-      title: "Automatización de Procesos (RPA)",
-      description: "Conecta tus aplicaciones y elimina el trabajo manual. Facturación, entrada de datos y reportes generados en piloto automático.",
-      icon: <Workflow className="w-6 h-6 text-blue-600" />
+      id: 2,
+      title: "Optimización RPA",
+      category: "Procesos Operativos",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
+      aspectRatio: "aspect-[16/9]",
+      colSpan: "col-span-1 md:col-span-2"
     },
     {
-      title: "Análisis de Datos Avanzado",
-      description: "Descubre patrones ocultos en tus ventas y operaciones. Dashboards en tiempo real potenciados por modelos predictivos.",
-      icon: <BarChart3 className="w-6 h-6 text-blue-600" />
+      id: 3,
+      isEvent: true,
+      colSpan: "col-span-1 md:col-span-2"
     },
     {
-      title: "Integración de Sistemas y CRM",
-      description: "Hacemos que tus herramientas hablen entre sí. Sincronización perfecta entre ventas, marketing y operaciones.",
-      icon: <Network className="w-6 h-6 text-blue-600" />
+      id: 4,
+      title: "Analítica Pro",
+      category: "Datos · Dashboards",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+      aspectRatio: "aspect-square",
+      colSpan: "col-span-1"
     },
     {
-      title: "Capacitación en IA para Equipos",
-      description: "Entrenamos a tu personal para aprovechar al máximo las herramientas modernas de IA generativa en su día a día.",
-      icon: <Users className="w-6 h-6 text-blue-600" />
+      id: 5,
+      title: "Sistemas & CRM",
+      category: "Sincronización Perfecta",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800",
+      aspectRatio: "aspect-[3/4]",
+      colSpan: "col-span-1"
     },
     {
+      id: 6,
       title: "Auditoría Digital",
-      description: "Analizamos el flujo de tu empresa y te entregamos un mapa exacto de cuellos de botella y oportunidades de optimización.",
-      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />
+      category: "Consultoría · Estrategia",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+      aspectRatio: "aspect-[16/9]",
+      colSpan: "col-span-1 md:col-span-2"
     }
   ];
 
   return (
-    <section className="py-24 bg-white relative">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-white font-sans">
+      <div className="container mx-auto max-w-[1400px] px-6 md:px-12">
         
-        <div className="relative flex items-center justify-center mb-20 min-h-[300px] lg:scale-100">
-          <div className="text-center max-w-3xl mx-auto px-4 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#000000] font-[Georgia] mb-6">
-              Todo lo que necesitas para <span className="text-[#000000]">automatizar</span>
-            </h2>
-            <p className="text-lg text-[#000000] font-[system-ui]">
-              Diseñamos soluciones tecnológicas a la medida de tu empresa. 
-              Sin jerga técnica complacada, solo resultados medibles.
-            </p>
-          </div>
+        {/* Header Section */}
+        <div className="flex flex-col items-center justify-center mb-20 space-y-5 text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight text-[#111111] leading-[0.95]"
+          >
+            Hecho con Nuestra <br className="hidden sm:block" /> Tecnología
+          </motion.h2>
           
-          {/* 3D Robot Model */}
-          <div className="absolute right-0 lg:-right-40 top-[50%] lg:top-[35%] -translate-y-1/2 w-[300px] lg:w-[500px] h-[300px] lg:h-[600px] z-20 pointer-events-none opacity-30 lg:opacity-100">
-            <RobotModel />
-          </div>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[13px] md:text-[14px] text-[#6B6B6B]"
+          >
+            Colección de los mejores servicios diseñados para tu empresa.
+          </motion.p>
+          
+          {/* Tags */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap items-center justify-center gap-2 mt-4 max-w-3xl"
+          >
+            {categories.map((cat, i) => (
+              <div 
+                key={i} 
+                className="px-5 py-2 border border-[#E5E5E5] rounded-full text-[13px] font-medium text-[#111111] hover:bg-[#F5F5F5] cursor-pointer transition-colors bg-white"
+              >
+                {cat}
+              </div>
+            ))}
+            <div className="px-5 py-2 border border-[#E5E5E5] rounded-full text-[13px] font-medium text-[#6B6B6B] bg-[#F5F5F5] ml-2">
+              por nuestro equipo
+            </div>
+          </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="p-8 rounded-3xl bg-slate-50 hover:bg-white border border-slate-100 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/5 transition-all group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 block">
-                {service.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {service.description}
-              </p>
-            </motion.div>
-          ))}
+        {/* Asymmetric Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-16 mt-16">
+          {services.map((item, index) => {
+            
+            // Event Block Render
+            if (item.isEvent) {
+              return (
+                <motion.div 
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`bg-[#0B0D17] p-8 md:p-12 flex flex-col justify-between overflow-hidden relative group cursor-pointer ${item.colSpan}`}
+                >
+                  <div className="flex justify-between items-center text-[#A0A3AE] border-b border-white/10 pb-4">
+                    <span className="text-sm font-medium tracking-wide text-white">Caso de éxito destacado</span>
+                    <span className="text-sm border border-white/30 px-3 py-1 rounded-full text-white">Reporte 2024</span>
+                  </div>
+                  
+                  <div className="my-16 text-center z-10 relative">
+                    <h3 className="text-6xl md:text-8xl font-black tracking-tighter text-white transform group-hover:scale-105 transition-transform duration-500 font-[Georgia]">
+                      Logística
+                    </h3>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 relative z-10">
+                    <p className="text-[#A0A3AE] text-[14px] max-w-sm leading-relaxed">
+                      Descubre cómo la implementación de agentes de IA redujo los costos operativos en un 40% en solo un mes.
+                    </p>
+                    <Link to="/servicios" className="group relative inline-flex items-center justify-between gap-6 overflow-hidden border border-white/10 bg-[#2D333F] px-8 py-3 transition-all duration-300 hover:border-white/20 shadow-lg rounded-md">
+                      <div className="absolute inset-0 bg-white transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+                      <span className="relative z-10 text-[14px] font-medium text-white group-hover:text-black transition-colors duration-300 delay-75 whitespace-nowrap">Leer el caso</span>
+                    </Link>
+                  </div>
+
+                  {/* Decorative outline matching style */}
+                  <div className="absolute inset-4 border border-white/5 pointer-events-none"></div>
+                </motion.div>
+              );
+            }
+
+            // Standard Service Render
+            return (
+              <Link to="/servicios" key={item.id} className={`block ${item.colSpan}`}>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`group cursor-pointer flex flex-col h-full`}
+                >
+                  <div className={`w-full overflow-hidden bg-[#E5E5E5] mb-5 ${item.aspectRatio}`}>
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                    />
+                  </div>
+                  
+                  <div className="flex items-start justify-between mt-auto">
+                    <div>
+                      <h3 className="text-[24px] md:text-[28px] font-bold text-[#111111] leading-tight mb-1 group-hover:text-blue-600 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-[13px] text-[#6B6B6B] font-medium">
+                        {item.category}
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 group-hover:opacity-100 transition-opacity opacity-70 mt-2">
+                      <span className="text-[13px] font-bold text-[#111111] uppercase tracking-wider hidden sm:block">Explorar</span>
+                      <div className="w-8 h-8 rounded-full border border-[#E5E5E5] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
+            );
+          })}
         </div>
 
       </div>
     </section>
   );
 }
+
